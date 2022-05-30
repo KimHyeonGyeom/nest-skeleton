@@ -11,7 +11,7 @@
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
     "start:dev": "nest start --watch",
-    "start:debug": "NODE_ENV=local nest start --debug --watch",
+    "start:debug": "NODE_ENV=development nest start --debug --watch",
     "start:prod": "node dist/main",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
     "test": "jest",
@@ -25,10 +25,12 @@
     "@nestjs/config": "^2.0.1",
     "@nestjs/core": "^8.0.0",
     "@nestjs/platform-express": "^8.0.0",
-    "@nestjs/typeorm": "^8.0.4",
+    "@nestjs/swagger": "^5.2.1",
+    "@nestjs/typeorm": "^7.1.5",
     "@typedorm/common": "^1.14.11",
     "@typedorm/core": "^1.14.11",
     "aws-sdk": "^2.1135.0",
+    "class-validator": "^0.13.2",
     "cls-hooked": "^4.2.2",
     "cross-env": "^7.0.3",
     "joi": "^17.6.0",
@@ -37,7 +39,7 @@
     "rimraf": "^3.0.2",
     "rxjs": "^7.2.0",
     "sqs-consumer": "^5.7.0",
-    "typeorm": "^0.3.6",
+    "typeorm": "^0.3.0",
     "uuid": "^8.3.2"
   },
   "devDependencies": {
@@ -49,8 +51,8 @@
     "@types/jest": "27.0.2",
     "@types/node": "^16.0.0",
     "@types/supertest": "^2.0.11",
-    "@typescript-eslint/eslint-plugin": "^5.0.0",
-    "@typescript-eslint/parser": "^5.0.0",
+    "@typescript-eslint/eslint-plugin": "^5.26.0",
+    "@typescript-eslint/parser": "^5.26.0",
     "eslint": "^8.0.1",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
@@ -79,6 +81,10 @@
       "**/*.(t|j)s"
     ],
     "coverageDirectory": "../coverage",
-    "testEnvironment": "node"
+    "testEnvironment": "node",
+    "moduleNameMapper": {
+      "@user/(.*)": "<rootDir>/api/user/$1",
+      "@user": "<rootDir>/api/user"
+    }
   }
 }
