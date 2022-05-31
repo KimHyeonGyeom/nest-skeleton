@@ -12,9 +12,7 @@ import { getEntityManager } from '@typedorm/core';
 
 @Injectable()
 export class UserRepositoryWrapper {
-  constructor(
-    @InjectRepository(User) private repository: BaseRepository<User>,
-  ) {}
+  constructor(@InjectRepository(User) private repository: Repository<User>) {}
 
   public async createUser(name: string, password: string): Promise<User> {
     const ss = getManager();
