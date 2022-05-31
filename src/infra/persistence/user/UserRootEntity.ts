@@ -9,7 +9,7 @@ import {
 } from 'typeorm';
 
 @Entity('User')
-export class UserRootEntity extends BaseEntity {
+export class User extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: string;
 

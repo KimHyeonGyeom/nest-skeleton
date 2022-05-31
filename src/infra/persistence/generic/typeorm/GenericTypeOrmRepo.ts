@@ -47,7 +47,7 @@ export abstract class GenericTypeOrmRepo<
       '__typeOrm___cls_hooked_tx_namespace',
       ss,
     );
-    await sd.getRepository('UserRootEntity').save(dalEntity);
+    await sd.getRepository('User').save(dalEntity);
   }
 
   async remove(aggregate: TAgg): Promise<void> {

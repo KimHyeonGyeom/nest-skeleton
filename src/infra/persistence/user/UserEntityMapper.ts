@@ -1,17 +1,13 @@
 import { Injectable } from '@nestjs/common';
 
 import { EntityMapper } from '../generic/EntityMapper';
-import { UserRootEntity } from './UserRootEntity';
+import { User as asd } from './UserRootEntity';
 import { User } from '../../../domain/domain/user/User';
 import { UserId } from '../../../domain/domain/user/UserId';
 
 @Injectable()
-export class UserEntityMapper extends EntityMapper<
-  User,
-  UserId,
-  UserRootEntity
-> {
-  toAggregate(dalEntity: UserRootEntity): User {
+export class UserEntityMapper extends EntityMapper<User, UserId, asd> {
+  toAggregate(dalEntity: asd): User {
     const { id, name, password, createdAt, updatedAt, deletedAt } = dalEntity;
 
     return new User(
@@ -24,8 +20,8 @@ export class UserEntityMapper extends EntityMapper<
     );
   }
 
-  toDalEntity(aggregate: User): UserRootEntity {
-    const rootDalEntity = new UserRootEntity();
+  toDalEntity(aggregate: User): asd {
+    const rootDalEntity = new asd();
     rootDalEntity.id = aggregate.id.key;
     rootDalEntity.name = aggregate.getName();
     rootDalEntity.password = aggregate.getPassword();

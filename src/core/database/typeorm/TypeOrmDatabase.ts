@@ -1,7 +1,7 @@
 import { Injectable, OnModuleInit } from '@nestjs/common';
 import { DataSource } from 'typeorm';
 import { User } from '../../../domain/domain/user/User';
-import { UserRootEntity } from '../../../infra/persistence/user/UserRootEntity';
+import { User as asd } from '../../../infra/persistence/user/UserRootEntity';
 
 const DEV_ENV = 'development';
 
@@ -12,7 +12,7 @@ export const MysqlDataSource = new DataSource({
   username: process.env.DATABASE_USERNAME || 'root',
   password: process.env.DATABASE_PASSWORD || '1234',
   database: process.env.DATABASE_DB_NAME || 'nest',
-  entities: [UserRootEntity],
+  entities: [asd],
   //logging: ['warn', 'error'],
   //logger: process.env.NODE_ENV === DEV_ENV ? 'debug' : 'file',
   charset: 'utf8mb4',

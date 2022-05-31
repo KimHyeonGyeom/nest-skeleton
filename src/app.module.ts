@@ -9,7 +9,7 @@ import { UserModule } from './interface/user/user.module';
 import { TransactionManager } from './core/database/typeorm/TransactionManager';
 import { TypeormTransactionMiddleware } from './core/database/typeorm/TransactionMiddleware';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { UserRootEntity } from './infra/persistence/user/UserRootEntity';
+import { User } from './infra/persistence/user/UserRootEntity';
 
 const UserProviders = [UserService, UserEntityMapper, UserRepository];
 
@@ -18,7 +18,7 @@ const UserProviders = [UserService, UserEntityMapper, UserRepository];
     EnvModule,
     DatabaseModule,
     UserModule,
-    TypeOrmModule.forFeature([UserRootEntity]),
+    TypeOrmModule.forFeature([User]),
   ],
   controllers: [],
   providers: [],
