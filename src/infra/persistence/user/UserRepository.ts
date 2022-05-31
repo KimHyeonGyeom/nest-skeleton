@@ -7,6 +7,12 @@ import { UserEntityMapper } from './UserEntityMapper';
 import { User } from '../../../domain/domain/user/User';
 import { UserId } from '../../../domain/domain/user/UserId';
 import { Transactional } from '../../../core/database/typeorm/Transactional';
+import {
+  IUserRepository,
+  UserRepositoryKey,
+} from '../../../domain/domain/user/UserRepository';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class UserRepository extends GenericTypeOrmRepo<
@@ -14,7 +20,11 @@ export class UserRepository extends GenericTypeOrmRepo<
   UserId,
   UserRootEntity
 > {
-  constructor(@Inject(UserEntityMapper) mapper: UserEntityMapper) {
+  constructor(
+    @Inject(UserEntityMapper) mapper: UserEntityMapper,
+    @InjectRepository(UserRootEntity)
+    private readonly userRepository: Repository<UserRootEntity>,
+  ) {
     super(mapper);
   }
 

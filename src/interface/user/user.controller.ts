@@ -13,6 +13,11 @@ import {
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UserService } from '../../application/user/UserService';
+import { getManager } from 'typeorm';
+import {
+  getEntityManagerOrTransactionManager,
+  Transactional,
+} from 'typeorm-transactional-cls-hooked';
 
 // import { JwtAuthGuard } from '@auth/guards/jwt-auth.guard';
 // import { LocalAuthGuard } from '@auth/guards/local-auth.guard';
@@ -49,8 +54,10 @@ export class UserController {
   // }
 
   @Post()
+  @Transactional()
   public signUp(@Body() dto: CreateUserDto) {
     const { email, name, password } = dto;
+
     const user = this.userService.createUser(dto);
 
     //return new SignInResponseDto(user);

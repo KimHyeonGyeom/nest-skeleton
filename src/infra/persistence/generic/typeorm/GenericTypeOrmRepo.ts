@@ -1,4 +1,4 @@
-import { FindOneOptions, Repository } from 'typeorm';
+import { FindOneOptions, getManager, Repository } from 'typeorm';
 import { Inject, Type } from '@nestjs/common';
 
 import { MysqlDataSource } from 'src/core/database/typeorm/TypeormDatabase';
@@ -9,6 +9,7 @@ import { TransactionManager } from 'src/core/database/typeorm/TransactionManager
 import { AggregateRoot } from '../../../../domain/domain/generic/AggregateRoot';
 import { Identity } from '../../../../domain/domain/generic/Identity';
 import { IGenericRepository } from '../../../../domain/domain/generic/IGenericRepository';
+import { getEntityManagerOrTransactionManager } from 'typeorm-transactional-cls-hooked';
 
 export abstract class GenericTypeOrmRepo<
   TAgg extends AggregateRoot<TId>,
@@ -41,7 +42,12 @@ export abstract class GenericTypeOrmRepo<
   async save(aggregate: TAgg): Promise<void> {
     const dalEntity = this.mapper.toDalEntity(aggregate);
     console.log(this.trxManager);
-    await this.getTypeOrmRepository().save(dalEntity);
+    const ss = getManager();
+    const sd = getEntityManagerOrTransactionManager(
+      '__typeOrm___cls_hooked_tx_namespace',
+      ss,
+    );
+    await sd.getRepository('UserRootEntity').save(dalEntity);
   }
 
   async remove(aggregate: TAgg): Promise<void> {

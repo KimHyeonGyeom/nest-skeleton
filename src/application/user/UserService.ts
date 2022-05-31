@@ -9,11 +9,15 @@ import {
 } from '../../domain/domain/user/UserRepository';
 import { User } from '../../domain/domain/user/User';
 import { UserRepository } from '../../infra/persistence/user/UserRepository';
+import { UserRootEntity } from '../../infra/persistence/user/UserRootEntity';
+import { InjectRepository } from '@nestjs/typeorm';
+import { UserId } from '../../domain/domain/user/UserId';
 
 @Injectable()
 export class UserService {
   constructor(
-    @Inject(UserRepositoryKey) private readonly userRepository: IUserRepository,
+    @Inject(UserRepositoryKey)
+    private readonly userRepository: IUserRepository,
   ) {}
 
   //@Transactional()
