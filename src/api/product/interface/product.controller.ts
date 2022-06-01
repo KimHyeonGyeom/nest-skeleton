@@ -9,38 +9,38 @@ import {
   UseInterceptors,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import { CreateUserDto } from './dto/create-user.dto';
-import { UserService } from '@user/application/user.service';
+import { CreateProductDto } from './dto/create-product.dto';
 import { UndefinedToNullInterceptor } from '../../../interceptors/undefinedToNull.interceptor';
+import { ProductService } from '../application/product.service';
 
 @UseInterceptors(UndefinedToNullInterceptor)
-@ApiTags('users')
-@Controller('users')
-export class UserController {
-  constructor(private readonly userService: UserService) {}
+@ApiTags('products')
+@Controller('products')
+export class ProductController {
+  constructor(private readonly productService: ProductService) {}
 
   @Post()
-  public signUp(@Body() dto: CreateUserDto) {
-    const { name, password } = dto;
+  public create(@Body() dto: CreateProductDto) {
+    const { name, price } = dto;
 
-    const user = this.userService.createUser(dto);
+    const user = this.productService.createProduct(dto);
   }
 
   @Get('/:id')
   public async getUserInfo(@Param() param) {
     const { id } = param;
 
-    const user = await this.userService.getUser(id);
+    const user = await this.productService.getProduct(id);
 
-    return { user: user };
+    return { user: user.toString() };
   }
 
   @Patch('/:id')
   public async updateUser(@Param() param, @Body() body) {
     const { id } = param;
-    const { name, password } = body;
+    const { name, price } = body;
 
-    const user = await this.userService.updateUser(id, { name, password });
+    const user = await this.productService.updateProduct(id, { name, price });
 
     return { message: '성공' };
   }
@@ -49,7 +49,7 @@ export class UserController {
   public async deleteUser(@Param() param) {
     const { id } = param;
 
-    const user = await this.userService.deleteUser(id);
+    const user = await this.productService.deleteProduct(id);
 
     return { message: '성공' };
   }

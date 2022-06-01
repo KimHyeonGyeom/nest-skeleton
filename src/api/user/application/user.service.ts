@@ -1,31 +1,53 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { UserRepositoryWrapper } from '@user/infra/persistence/repository/user.repository';
-import { CreateUserCommand } from '@user/application/createUser/CreateUserCommand';
+
+import { CreateUserCommand } from '@user/application/command/CreateUserCommand';
+import { Transactional } from 'typeorm-transactional-cls-hooked';
 import {
-  getEntityManagerOrTransactionManager,
-  Transactional,
-} from 'typeorm-transactional-cls-hooked';
-import { getManager } from 'typeorm';
-//import { Transactional } from 'src/core/database/typeorm/Transactional';
-// import { User } from '../domain/User';
-// import {
-//   IUserRepository,
-//   UserRepositoryKey,
-// } from '../domain/UserRepository';
-// import { CreateUserCommand } from './command/CreateUserCommand';
+  IUserRepository,
+  UserRepositoryKey,
+} from '@user/domain/user/UserRepository';
+import { User } from '@user/domain/user/User';
 
 @Injectable()
 export class UserService {
-  constructor(private userRepository: UserRepositoryWrapper) {}
+  constructor(
+    @Inject(UserRepositoryKey) private readonly userRepository: IUserRepository,
+  ) {}
+
+  async getUser(id: number) {
+    const user = await this.userRepository.findOne(id);
+
+    return user;
+  }
 
   @Transactional()
   async createUser(command: CreateUserCommand) {
     const { name, password } = command;
-    const ss = getManager();
-    const sd = getEntityManagerOrTransactionManager(
-      '__typeOrm___cls_hooked_tx_namespace',
-      ss,
-    );
-    const user = await this.userRepository.createUser(name, password);
+
+    const users = User.create({
+      name,
+      password,
+    });
+
+    const user = await this.userRepository.save(users);
+  }
+
+  @Transactional()
+  async deleteUser(id: number) {
+    const user = await this.userRepository.remove(id);
+
+    return user;
+  }
+
+  @Transactional()
+  async updateUser(id: number, body: any) {
+    const users = User.create({
+      name: body.name,
+      password: body.pasword,
+    });
+
+    const user = await this.userRepository.update(id, users);
+
+    return user;
   }
 }

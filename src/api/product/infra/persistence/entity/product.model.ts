@@ -7,17 +7,18 @@ import {
   BaseEntity,
   JoinColumn,
 } from 'typeorm';
+import { AutoGenerateAttribute } from '@typedorm/common';
 import { RootTypeOrmEntity } from '../../../../../domain/typeorm/RootTypeOrmEntity';
 import { Order } from '../../../../order/infra/persistence/entity/order.model';
 
-@Entity('users')
-export class User extends RootTypeOrmEntity {
+@Entity('products')
+export class Product extends RootTypeOrmEntity {
   @Column({ length: 64 })
   name: string;
 
-  @Column({ length: 128 })
-  password: string;
+  @Column({})
+  price: number;
 
-  @JoinColumn([{ name: 'id', referencedColumnName: 'user_id' }])
+  @JoinColumn([{ name: 'id', referencedColumnName: 'product_id' }])
   order: Order;
 }
