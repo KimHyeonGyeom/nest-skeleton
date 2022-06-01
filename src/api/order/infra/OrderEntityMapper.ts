@@ -1,11 +1,11 @@
 import { Injectable } from '@nestjs/common';
-import { OrderRootEntity } from './OrderRootEntity';
 import { EntityMapper } from '../../../domain/EntityMapper';
+import { OrderModel } from './persistence/entity/order.model';
 import { Order } from '../domain/order/Order';
 
 @Injectable()
-export class OrderEntityMapper extends EntityMapper<Order, OrderRootEntity> {
-  toAggregate(dalEntity: OrderRootEntity): Order {
+export class OrderEntityMapper extends EntityMapper<Order, OrderModel> {
+  toAggregate(dalEntity: OrderModel): Order {
     const {
       id,
       user_id,
@@ -27,14 +27,14 @@ export class OrderEntityMapper extends EntityMapper<Order, OrderRootEntity> {
     );
   }
 
-  toDalEntity(aggregate: Order): OrderRootEntity {
-    const rootDalEntity = new OrderRootEntity();
+  toDalEntity(aggregate: Order): OrderModel {
+    const rootDalEntity = new OrderModel();
     rootDalEntity.user_id = aggregate.getUserId();
     rootDalEntity.product_id = aggregate.getProductId();
     rootDalEntity.address = aggregate.getAddress();
-    rootDalEntity.createdAt = aggregate.getCreatedAt();
-    rootDalEntity.updatedAt = aggregate.getUpdatedAt();
-    rootDalEntity.deletedAt = aggregate.getDeletedAt();
+    rootDalEntity.createdAt = aggregate.createdAt;
+    rootDalEntity.updatedAt = aggregate.updatedAt;
+    rootDalEntity.deletedAt = aggregate.deletedAt;
 
     return rootDalEntity;
   }

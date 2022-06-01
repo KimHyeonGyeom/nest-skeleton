@@ -5,11 +5,12 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 
 //import { EmailModule } from '@email/email.module';
 
-import { User } from '@user/infra/persistence/entity/user.model';
-import { UserRepository } from '@user/infra/persistence/repository/user.repository';
 import { UserController } from './interface/user.controller';
-import { UserService } from '@user/application/user.service';
-import { UserEntityMapper } from '@user/infra/UserEntityMapper';
+
+import { UserRepository } from './infra/persistence/repository/user.repository';
+import { UserService } from './application/user.service';
+import { UserEntityMapper } from './infra/UserEntityMapper';
+import { User } from './infra/persistence/entity/user.model';
 
 const controllers = [UserController];
 const services = [UserService];

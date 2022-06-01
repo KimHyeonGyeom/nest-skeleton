@@ -6,6 +6,6 @@ export interface IGenericRepository<
 > {
   findOne: (id: number) => Promise<TAgg | null>;
   save: (aggregate: TAgg) => Promise<void>;
-  update: (id: number, aggregate: TAgg) => Promise<void>;
-  remove: (id: number) => Promise<void>;
+  update: (id: number, aggregate: TAgg) => Promise<void | null>;
+  remove: (id: number) => Promise<void | null>;
 }

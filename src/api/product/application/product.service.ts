@@ -1,12 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 
-import { CreateUserCommand } from '@user/application/command/CreateUserCommand';
 import { Transactional } from 'typeorm-transactional-cls-hooked';
-import {
-  IUserRepository,
-  UserRepositoryKey,
-} from '@user/domain/user/UserRepository';
-import { User } from '@user/domain/user/User';
+
 import {
   IProductRepository,
   ProductRepositoryKey,

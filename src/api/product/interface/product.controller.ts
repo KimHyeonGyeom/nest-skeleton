@@ -32,7 +32,7 @@ export class ProductController {
 
     const user = await this.productService.getProduct(id);
 
-    return { user: user.toString() };
+    return { user: user };
   }
 
   @Patch('/:id')

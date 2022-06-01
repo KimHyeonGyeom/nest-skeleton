@@ -16,11 +16,11 @@ export class ProductEntityMapper extends EntityMapper<
 
   toDalEntity(aggregate: Product): ProductRootEntity {
     const rootDalEntity = new ProductRootEntity();
-    rootDalEntity.name = aggregate.getName();
-    rootDalEntity.price = aggregate.getPrice();
-    rootDalEntity.createdAt = aggregate.getCreatedAt();
-    rootDalEntity.updatedAt = aggregate.getUpdatedAt();
-    rootDalEntity.deletedAt = aggregate.getDeletedAt();
+    rootDalEntity.name = aggregate.name;
+    rootDalEntity.price = aggregate.price;
+    rootDalEntity.createdAt = aggregate.createdAt;
+    rootDalEntity.updatedAt = aggregate.updatedAt;
+    rootDalEntity.deletedAt = aggregate.deletedAt;
 
     return rootDalEntity;
   }

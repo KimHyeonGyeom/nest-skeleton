@@ -1,19 +1,9 @@
 export class AggregateRoot<TId extends number> extends Number {
   constructor(
-    private readonly createdAt: Date,
-    private readonly updatedAt: Date,
-    private readonly deletedAt: Date | null,
+    public readonly createdAt: Date | undefined,
+    public readonly updatedAt: Date | undefined,
+    public readonly deletedAt: Date | undefined | null,
   ) {
     super();
-  }
-
-  getCreatedAt(): Date {
-    return this.createdAt;
-  }
-  getUpdatedAt(): Date {
-    return this.updatedAt;
-  }
-  getDeletedAt(): Date | null {
-    return this.deletedAt;
   }
 }

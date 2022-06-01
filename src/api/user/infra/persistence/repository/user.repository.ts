@@ -49,11 +49,13 @@
 // }
 import { Inject, Injectable } from '@nestjs/common';
 import { GenericTypeOrmRepo } from '../../../../../domain/typeorm/GenericTypeOrmRepo';
-import { User } from '@user/domain/user/User';
+
 //import { UserId } from '@order/domain/order/UserId';
-import { UserRootEntity } from '@user/infra/UserRootEntity';
-import { UserEntityMapper } from '@user/infra/UserEntityMapper';
-import { UserRepositoryKey } from '@user/domain/user/UserRepository';
+
+import { UserRootEntity } from '../../UserRootEntity';
+import { UserRepositoryKey } from '../../../domain/user/UserRepository';
+import { UserEntityMapper } from '../../UserEntityMapper';
+import { User } from '../../../domain/user/User';
 
 @Injectable()
 @Reflect.metadata(UserRepositoryKey, 'User')

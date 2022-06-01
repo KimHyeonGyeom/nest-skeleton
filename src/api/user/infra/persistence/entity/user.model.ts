@@ -8,7 +8,7 @@ import {
   JoinColumn,
 } from 'typeorm';
 import { RootTypeOrmEntity } from '../../../../../domain/typeorm/RootTypeOrmEntity';
-import { Order } from '../../../../order/infra/persistence/entity/order.model';
+import { OrderModel } from '../../../../order/infra/persistence/entity/order.model';
 
 @Entity('users')
 export class User extends RootTypeOrmEntity {
@@ -19,5 +19,5 @@ export class User extends RootTypeOrmEntity {
   password: string;
 
   @JoinColumn([{ name: 'id', referencedColumnName: 'user_id' }])
-  order: Order;
+  order: OrderModel;
 }

@@ -10,8 +10,9 @@ import {
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { CreateUserDto } from './dto/create-user.dto';
-import { UserService } from '@user/application/user.service';
+
 import { UndefinedToNullInterceptor } from '../../../interceptors/undefinedToNull.interceptor';
+import { UserService } from '../application/user.service';
 
 @UseInterceptors(UndefinedToNullInterceptor)
 @ApiTags('users')
@@ -31,7 +32,9 @@ export class UserController {
     const { id } = param;
 
     const user = await this.userService.getUser(id);
-
+    if (user) {
+      console.log(user.id);
+    }
     return { user: user };
   }
 

@@ -1,12 +1,12 @@
 import { Inject, Injectable } from '@nestjs/common';
 
-import { CreateUserCommand } from '@user/application/command/CreateUserCommand';
 import { Transactional } from 'typeorm-transactional-cls-hooked';
 import {
   IUserRepository,
   UserRepositoryKey,
-} from '@user/domain/user/UserRepository';
-import { User } from '@user/domain/user/User';
+} from '../domain/user/UserRepository';
+import { CreateUserCommand } from './command/CreateUserCommand';
+import { User } from '../domain/user/User';
 
 @Injectable()
 export class UserService {

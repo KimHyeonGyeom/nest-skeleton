@@ -9,11 +9,12 @@ import {
 } from 'typeorm';
 import { AutoGenerateAttribute } from '@typedorm/common';
 import { RootTypeOrmEntity } from '../../../../../domain/typeorm/RootTypeOrmEntity';
-import { User } from '@user/infra/persistence/entity/user.model';
+
 import { Product } from '../../../../product/infra/persistence/entity/product.model';
+import { User } from '../../../../user/infra/persistence/entity/user.model';
 
 @Entity('orders')
-export class Order extends RootTypeOrmEntity {
+export class OrderModel extends RootTypeOrmEntity {
   @Column()
   user_id: number;
 

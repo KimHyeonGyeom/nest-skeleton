@@ -5,13 +5,13 @@ import { OrderController } from './interface/order.controller';
 import { OrderRepository } from './infra/persistence/repository/order.repository';
 import { OrderService } from './application/order.service';
 import { OrderEntityMapper } from './infra/OrderEntityMapper';
-import { Order } from './infra/persistence/entity/order.model';
+import { OrderModel } from './infra/persistence/entity/order.model';
 
 const services = [OrderService];
 const controllers = [OrderController];
 
 @Module({
-  imports: [ConfigModule, TypeOrmModule.forFeature([Order])],
+  imports: [ConfigModule, TypeOrmModule.forFeature([OrderModel])],
   controllers,
   providers: [
     OrderEntityMapper,

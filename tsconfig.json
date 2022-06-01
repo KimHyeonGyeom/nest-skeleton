@@ -5,16 +5,14 @@
     "removeComments": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "strictNullChecks": true,
     "target": "es2017",
     "sourceMap": true,
+    "strict": false,
     "outDir": "./dist",
     "baseUrl": "./",
     "incremental": true,
     "esModuleInterop": true,
-    "paths": {
-      "@user": ["src/api/user"],
-      "@user/*": ["src/api/user/*"],
-    }
   },
   "exclude": ["node_modules", "dist"]
 }

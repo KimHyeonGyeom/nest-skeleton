@@ -6,6 +6,7 @@ import {
 } from '../domain/order/OrderRepository';
 import { Order } from '../domain/order/Order';
 import { CreateOrderCommand } from './command/CreateOrderCommand';
+import { Account } from './command/FindOrderCommand';
 
 @Injectable()
 export class OrderService {
@@ -15,7 +16,7 @@ export class OrderService {
   ) {}
 
   async getOrder(id: number) {
-    const user = await this.orderRepository.findOne(id);
+    const user = await this.orderRepository.findOrder(id);
 
     return user;
   }

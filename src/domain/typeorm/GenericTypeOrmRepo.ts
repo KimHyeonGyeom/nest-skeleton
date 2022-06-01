@@ -31,7 +31,7 @@ export abstract class GenericTypeOrmRepo<
     await this.getTypeOrmRepository().save(dalEntity);
   }
 
-  async update(id: number, aggregate: TAgg): Promise<void> {
+  async update(id: number, aggregate: TAgg): Promise<void | null> {
     const findOption: FindOneOptions = { where: { id } };
 
     const repository = this.getTypeOrmRepository();
@@ -47,7 +47,7 @@ export abstract class GenericTypeOrmRepo<
     await repository.update(id, dalEntity as any);
   }
 
-  async remove(id: number): Promise<void> {
+  async remove(id: number): Promise<void | null> {
     const findOption: FindOneOptions = { where: { id } };
 
     const repository = this.getTypeOrmRepository();

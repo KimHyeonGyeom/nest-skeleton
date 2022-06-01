@@ -2,12 +2,12 @@ import { AggregateRoot } from '../../../../domain/generic/AggregateRoot';
 
 export class Product extends AggregateRoot<number> {
   constructor(
-    private id: number,
-    private name: string,
-    private price: number,
-    createdAt: Date,
-    updatedAt: Date,
-    deletedAt: Date | null,
+    public readonly id: number | null,
+    public name: string,
+    public price: number,
+    createdAt: Date | undefined,
+    updatedAt: Date | undefined,
+    deletedAt: Date | undefined | null,
   ) {
     super(createdAt, updatedAt, deletedAt);
   }
@@ -16,20 +16,6 @@ export class Product extends AggregateRoot<number> {
     const { name, price } = param;
 
     return new Product(null, name, price, new Date(), new Date(), null);
-  }
-
-  setName(name: string) {
-    this.name = name;
-  }
-  getId(): number {
-    return this.id;
-  }
-  getName(): string {
-    return this.name;
-  }
-
-  getPrice(): number {
-    return this.price;
   }
 
   toString(): any {
