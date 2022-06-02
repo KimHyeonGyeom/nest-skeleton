@@ -8,21 +8,22 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserController } from './interface/user.controller';
 
 import { UserRepository } from './infra/persistence/repository/user.repository';
-import { UserService } from './application/user.service';
+import { UserServiceImpl } from './application/user.service';
 import { UserEntityMapper } from './infra/UserEntityMapper';
 import { User } from './infra/persistence/entity/user.model';
+import { DatabaseModule } from '../../database.module';
 
 const controllers = [UserController];
-const services = [UserService];
+const services = [UserServiceImpl];
 
 @Module({
-  imports: [ConfigModule, TypeOrmModule.forFeature([User])],
+  imports: [ConfigModule, DatabaseModule],
   controllers,
   providers: [
     UserEntityMapper,
     ...services,
     { provide: 'UserRepository', useClass: UserRepository },
   ],
-  exports: [TypeOrmModule],
+  exports: [],
 })
 export class UserModule {}

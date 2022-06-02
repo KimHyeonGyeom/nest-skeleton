@@ -7,9 +7,10 @@ import {
 } from '../domain/user/UserRepository';
 import { CreateUserCommand } from './command/CreateUserCommand';
 import { User } from '../domain/user/User';
+import { UserService } from '../interface/service/user.service';
 
 @Injectable()
-export class UserService {
+export class UserServiceImpl implements UserService {
   constructor(
     @Inject(UserRepositoryKey) private readonly userRepository: IUserRepository,
   ) {}

@@ -9,6 +9,6 @@ import { ConfigModule } from '@nestjs/config';
     }),
   ],
   providers: [],
-  exports: [EnvModule],
+  exports: [],
 })
 export class EnvModule {}

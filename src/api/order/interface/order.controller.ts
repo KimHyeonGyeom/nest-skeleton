@@ -31,7 +31,7 @@ export class OrderController {
     const { id } = param;
 
     const order = await this.orderService.getOrder(id);
-    console.log(order!.address);
+
     return { order };
   }
 

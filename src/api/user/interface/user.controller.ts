@@ -12,13 +12,13 @@ import { ApiTags } from '@nestjs/swagger';
 import { CreateUserDto } from './dto/create-user.dto';
 
 import { UndefinedToNullInterceptor } from '../../../interceptors/undefinedToNull.interceptor';
-import { UserService } from '../application/user.service';
+import { UserServiceImpl } from '../application/user.service';
 
 @UseInterceptors(UndefinedToNullInterceptor)
 @ApiTags('users')
 @Controller('users')
 export class UserController {
-  constructor(private readonly userService: UserService) {}
+  constructor(private readonly userService: UserServiceImpl) {}
 
   @Post()
   public signUp(@Body() dto: CreateUserDto) {

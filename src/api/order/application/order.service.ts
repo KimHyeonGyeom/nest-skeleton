@@ -7,6 +7,7 @@ import {
 import { Order } from '../domain/order/Order';
 import { CreateOrderCommand } from './command/CreateOrderCommand';
 import { Account } from './command/FindOrderCommand';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class OrderService {

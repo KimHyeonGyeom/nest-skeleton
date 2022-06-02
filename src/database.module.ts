@@ -6,6 +6,6 @@ import connectionOptions from './config/OrmConfig';
 @Module({
   imports: [EnvModule, TypeOrmModule.forRoot(connectionOptions)],
   providers: [],
-  exports: [],
+  exports: [TypeOrmModule],
 })
 export class DatabaseModule {}

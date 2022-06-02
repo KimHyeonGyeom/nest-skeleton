@@ -6,18 +6,19 @@ import { OrderRepository } from './infra/persistence/repository/order.repository
 import { OrderService } from './application/order.service';
 import { OrderEntityMapper } from './infra/OrderEntityMapper';
 import { OrderModel } from './infra/persistence/entity/order.model';
+import { DatabaseModule } from '../../database.module';
 
 const services = [OrderService];
 const controllers = [OrderController];
 
 @Module({
-  imports: [ConfigModule, TypeOrmModule.forFeature([OrderModel])],
+  imports: [ConfigModule, DatabaseModule],
   controllers,
   providers: [
     OrderEntityMapper,
     ...services,
     { provide: 'OrderRepository', useClass: OrderRepository },
   ],
-  exports: [TypeOrmModule],
+  exports: [],
 })
 export class OrderModule {}
